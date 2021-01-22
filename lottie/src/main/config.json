@@ -1,0 +1,27 @@
+{
+  "app": {
+    "bundleName": "com.airbnb.lottietest",
+    "vendor": "airbnb",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 4,
+      "target": 4,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.airbnb.lottie",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "lottie",
+      "moduleType": "har"
+    }
+  }
+}

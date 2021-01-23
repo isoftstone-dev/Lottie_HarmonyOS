@@ -38,8 +38,8 @@ public final class Utils {
     private static final ThreadLocal<PathMeasure> threadLocalPathMeasure = new ThreadLocal<PathMeasure>() {
         @Override
         protected PathMeasure initialValue() {
-            return null;
-            //return new PathMeasure();
+            //return null;
+            return new PathMeasure(null, false);
         }
     };
 

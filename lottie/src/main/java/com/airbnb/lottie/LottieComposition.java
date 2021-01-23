@@ -91,6 +91,8 @@ public class LottieComposition {
     return endFrame;
   }
 
+  public float getFrameRate() {return frameRate;}
+
   public float getDurationFrames() {
     return endFrame - startFrame;
   }

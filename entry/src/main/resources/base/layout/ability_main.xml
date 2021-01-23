@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DirectionalLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:app="http://schemas.huawei.com/apk/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
     ohos:orientation="vertical">
@@ -13,6 +14,7 @@
         ohos:layout_alignment="horizontal_center"
         ohos:text="Hello World"
         ohos:text_size="50"
+        app:LottieView_jsonFile = "resources/rawfile/bullseye.json"
     />
 
 </DirectionalLayout>

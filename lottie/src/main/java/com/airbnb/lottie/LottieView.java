@@ -23,10 +23,13 @@ import static okio.Okio.source;
 
 public class LottieView extends Component implements Component.DrawTask {
 
-    //lottie解析器
+    // JSON文件
+    private String jsonFile;
+
+    // lottie解析器
     private LottieComposition lottieComposition;
 
-    //
+    // lottie绘制图层
     private CompositionLayer compositionLayer;
 
 
@@ -40,6 +43,8 @@ public class LottieView extends Component implements Component.DrawTask {
 
     public LottieView(Context context, AttrSet attrSet) {
         super(context, attrSet);
+        jsonFile = attrSet.getAttr("LottieView_jsonFile").get().getStringValue();
+
         init();
     }
 
@@ -67,7 +72,7 @@ public class LottieView extends Component implements Component.DrawTask {
         @Override
         public void onUpdate(AnimatorValue animatorValue, float v) {
             if (v >= 0.8f) {
-              v = 0.8f;
+              //v = 0.8f;
             }
             compositionLayer.setProgress(v);
             invalidate();
@@ -77,7 +82,7 @@ public class LottieView extends Component implements Component.DrawTask {
     private void init()  {
         // 解析json文件，获取InputStream
         ResourceManager resourceManager = getContext().getResourceManager();
-        RawFileEntry rawFileEntry = resourceManager.getRawFileEntry("resources/rawfile/bullseye.json");
+        RawFileEntry rawFileEntry = resourceManager.getRawFileEntry(jsonFile);
         Resource resource = null;
         try {
             resource = rawFileEntry.openRawFile();
@@ -104,9 +109,9 @@ public class LottieView extends Component implements Component.DrawTask {
         // 启动动画
         animatorValue = new AnimatorValue();
         animatorValue.setCurveType(Animator.CurveType.LINEAR);
-        animatorValue.setDelay(100);
+        animatorValue.setDelay(1000 / (int)lottieComposition.getFrameRate());
         animatorValue.setLoopedCount(Animator.INFINITE);
-        animatorValue.setDuration(4000);
+        animatorValue.setDuration(1000 * (int)(lottieComposition.getDurationFrames() / lottieComposition.getFrameRate()));
         animatorValue.setValueUpdateListener(mAnimatorUpdateListener);
         animatorValue.start();
     }

@@ -10,13 +10,6 @@ public class MainAbilitySlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_main);
-
-        LottieView lottieView = (LottieView)findComponentById(ResourceTable.Id_text_helloworld);
-        if (lottieView == null) {
-
-        } else {
-            lottieView.addDrawTask(lottieView);
-        }
     }
 
     @Override

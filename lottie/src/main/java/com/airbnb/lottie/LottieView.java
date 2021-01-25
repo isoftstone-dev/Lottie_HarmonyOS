@@ -71,9 +71,6 @@ public class LottieView extends Component implements Component.DrawTask {
             = new AnimatorValue.ValueUpdateListener() {
         @Override
         public void onUpdate(AnimatorValue animatorValue, float v) {
-            if (v >= 0.8f) {
-              //v = 0.8f;
-            }
             compositionLayer.setProgress(v);
             invalidate();
         }
@@ -114,5 +111,7 @@ public class LottieView extends Component implements Component.DrawTask {
         animatorValue.setDuration(1000 * (int)(lottieComposition.getDurationFrames() / lottieComposition.getFrameRate()));
         animatorValue.setValueUpdateListener(mAnimatorUpdateListener);
         animatorValue.start();
+
+        addDrawTask(this);
     }
 }

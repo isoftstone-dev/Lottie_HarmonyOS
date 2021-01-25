@@ -7,13 +7,9 @@
     ohos:orientation="vertical">
 
     <com.airbnb.lottie.LottieView
-        ohos:id="$+id:text_helloworld"
+        ohos:id="$+id:lottieview"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:background_element="$graphic:background_ability_main"
-        ohos:layout_alignment="horizontal_center"
-        ohos:text="Hello World"
-        ohos:text_size="50"
         app:LottieView_jsonFile = "resources/rawfile/bullseye.json"
     />
 

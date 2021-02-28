@@ -7,6 +7,7 @@ import com.airbnb.lottie.utils.Logger;
 import com.airbnb.lottie.utils.Utils;
 import ohos.agp.components.Component;
 import ohos.app.Context;
+import ohos.media.image.ImageSource;
 import ohos.media.image.PixelMap;
 
 import java.io.IOException;
@@ -77,6 +78,9 @@ public class ImageAssetManager {
 
     String filename = asset.getFileName();
 
+    ImageSource.SourceOptions opts = new ImageSource.SourceOptions();
+    opts.baseDensity = 160;
+
     //PixelMap.InitializationOptions opts = new BitmapFactory.Options();
     //opts.inScaled = true;
     //opts.inDensity = 160;
@@ -85,12 +89,12 @@ public class ImageAssetManager {
       // Contents look like a base64 data URI, with the format data:image/png;base64,<data>.
       byte[] data;
       try {
-        //data = Base64.Decoder(filename.substring(filename.indexOf(',') + 1), Base64.DEFAULT);
+        data = Base64.getDecoder().decode(filename.substring(filename.indexOf(',') + 1));
       } catch (IllegalArgumentException e) {
         Logger.warning("data URL did not have correct base64 format.", e);
         return null;
       }
-      //bitmap = new PixelMap();
+      bitmap =  ImageSource.create(data, 0, data.length, opts).createPixelmap(null);
       return putBitmap(id, bitmap);
     }
 

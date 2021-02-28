@@ -8,12 +8,12 @@ import java.util.ListIterator;
  * above it.
  */
 interface GreedyContent {
-  /**
-   * An iterator of contents that can be used to take ownership of contents. If ownership is taken,
-   * the content should be removed from the iterator.
-   *
-   * The contents should be iterated by calling hasPrevious() and previous() so that the list of
-   * contents is traversed from bottom to top which is the correct order for handling AE logic.
-   */
-  void absorbContent(ListIterator<Content> contents);
+    /**
+     * An iterator of contents that can be used to take ownership of contents. If ownership is taken,
+     * the content should be removed from the iterator.
+     * <p>
+     * The contents should be iterated by calling hasPrevious() and previous() so that the list of
+     * contents is traversed from bottom to top which is the correct order for handling AE logic.
+     */
+    void absorbContent(ListIterator<Content> contents);
 }

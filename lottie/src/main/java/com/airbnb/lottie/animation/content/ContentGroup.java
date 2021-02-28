@@ -17,6 +17,7 @@ import ohos.agp.render.Canvas;
 import ohos.agp.render.Paint;
 import ohos.agp.render.Path;
 import ohos.agp.utils.Matrix;
+import ohos.agp.utils.Point;
 import ohos.agp.utils.RectFloat;
 
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class ContentGroup implements DrawingContent, PathContent,
     }
 
     ContentGroup(final LottieDrawable lottieDrawable, BaseLayer layer,
-                 String name, boolean hidden, List<Content> contents,  AnimatableTransform transform) {
+                 String name, boolean hidden, List<Content> contents, AnimatableTransform transform) {
         this.name = name;
         this.lottieDrawable = lottieDrawable;
         this.hidden = hidden;
@@ -153,7 +154,7 @@ public class ContentGroup implements DrawingContent, PathContent,
         for (int i = contents.size() - 1; i >= 0; i--) {
             Content content = contents.get(i);
             if (content instanceof PathContent) {
-                path.addPath(((PathContent) content).getPath(), matrix, null);
+                path.addPath(((PathContent) content).getPath(), matrix, Path.AddPathMode.APPEND_ADD_PATH_MODE);
             }
         }
         return path;
@@ -199,14 +200,14 @@ public class ContentGroup implements DrawingContent, PathContent,
 
     private boolean hasTwoOrMoreDrawableContent() {
         int drawableContentCount = 0;
-      for (Content content : contents) {
-        if (content instanceof DrawingContent) {
-          drawableContentCount += 1;
-          if (drawableContentCount >= 2) {
-            return true;
-          }
+        for (Content content : contents) {
+            if (content instanceof DrawingContent) {
+                drawableContentCount += 1;
+                if (drawableContentCount >= 2) {
+                    return true;
+                }
+            }
         }
-      }
         return false;
     }
 
@@ -243,17 +244,17 @@ public class ContentGroup implements DrawingContent, PathContent,
 
         if (keyPath.propagateToChildren(getName(), depth)) {
             int newDepth = depth + keyPath.incrementDepthBy(getName(), depth);
-          for (Content content : contents) {
-            if (content instanceof KeyPathElement) {
-              KeyPathElement element = (KeyPathElement) content;
-              element.resolveKeyPath(keyPath, newDepth, accumulator, currentPartialKeyPath);
+            for (Content content : contents) {
+                if (content instanceof KeyPathElement) {
+                    KeyPathElement element = (KeyPathElement) content;
+                    element.resolveKeyPath(keyPath, newDepth, accumulator, currentPartialKeyPath);
+                }
             }
-          }
         }
     }
 
     @Override
-    public <T> void addValueCallback(T property,  LottieValueCallback<T> callback) {
+    public <T> void addValueCallback(T property, LottieValueCallback<T> callback) {
         if (transformAnimation != null) {
             transformAnimation.applyValueCallback(property, callback);
         }

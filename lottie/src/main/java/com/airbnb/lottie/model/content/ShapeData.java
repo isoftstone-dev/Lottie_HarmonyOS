@@ -44,7 +44,7 @@ public class ShapeData {
 
   public void interpolateBetween(ShapeData shapeData1, ShapeData shapeData2, float percentage) {
     if (percentage < 0 || percentage > 1) {
-      throw  new NumberFormatException("percentage must be from 0 to 1");
+      //throw  new NumberFormatException("percentage must be from 0 to 1");
     }
     if (initialPoint == null) {
       initialPoint = new Point();

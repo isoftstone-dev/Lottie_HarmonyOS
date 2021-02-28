@@ -20,6 +20,7 @@ public class MiscUtils {
     outPath.reset();
     Point initialPoint = shapeData.getInitialPoint();
     outPath.moveTo(initialPoint.getPointX(), initialPoint.getPointY());
+    //outPath.moveTo(0, 0);
     pathFromDataCurrentPoint.modify(initialPoint.getPointX(), initialPoint.getPointY());
     for (int i = 0; i < shapeData.getCurves().size(); i++) {
       CubicCurveData curveData = shapeData.getCurves().get(i);
@@ -35,6 +36,7 @@ public class MiscUtils {
         // animation as much as possible.
         // outPath.rMoveTo(0.01f, 0.01f);
         outPath.lineTo(vertex.getPointX(), vertex.getPointY());
+        //outPath.lineTo(300, 300);
       } else {
         outPath.cubicTo(new Point(cp1.getPointX(), cp1.getPointY()),new Point(cp2.getPointX(), cp2.getPointY()),new Point(vertex.getPointX(), vertex.getPointY()));
       }
@@ -47,7 +49,8 @@ public class MiscUtils {
 
   public static float lerp(float a, float b, float percentage) {
     if (percentage < 0 || percentage > 1) {
-      throw new NumberFormatException("percentage must be from 0 to 1");
+      percentage = 0;
+      //throw new NumberFormatException("percentage must be from 0 to 1");
     }
     return a + percentage * (b - a);
   }

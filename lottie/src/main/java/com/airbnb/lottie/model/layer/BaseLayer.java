@@ -542,7 +542,8 @@ public abstract class BaseLayer
 
   void setProgress(float progress) {
     if (progress < 0 || progress > 1) {
-      throw new NumberFormatException("progress must be from 0 to 1");
+      //progress = 0;
+      throw new NumberFormatException("progress must be from 0 to 1" + progress);
     }
     // Time stretch should not be applied to the layer transform.
     transform.setProgress(progress);

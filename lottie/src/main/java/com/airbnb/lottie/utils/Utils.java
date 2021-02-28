@@ -253,14 +253,14 @@ public final class Utils {
 
     public static float dpScale() {
         if (dpScale == -1) {
-            dpScale = 1.8f;
+            dpScale = 0.6f;
             //dpScale = Resources.getSystem().getDisplayMetrics().density;
         }
         return dpScale;
     }
 
     public static float getAnimationScale(Context context) {
-        dpScale = 1.8f;
+        dpScale = 0.6f;
 
         return dpScale;
         //return Settings.System.getFloat(context.getContentResolver(),
